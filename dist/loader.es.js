@@ -1,5 +1,3 @@
-'use strict';
-
 const flatten = (items) => items
   .reduce((flat,item) => {
     Array.isArray(item)

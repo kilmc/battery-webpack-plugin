@@ -25,11 +25,11 @@ class BatteryWebpackPlugin {
 
         loaderCtx[this.pluginName] = {
           addClassNames: (resourcePath,classNamesArr) => {
-            this.cacheObject[resourcePath] = classNamesArr
+            this.cacheObject[resourcePath] = classNamesArr;
           }
-        }
-      })
-    })
+        };
+      });
+    });
 
     compiler.hooks.emit.tap(this.pluginName, (compilation, callback) => {
       const fileContent = battery.generateCSS(
@@ -43,7 +43,7 @@ class BatteryWebpackPlugin {
       };
 
       if (callback) { callback(); }
-    })
+    });
   }
 }
 

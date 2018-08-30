@@ -6,7 +6,8 @@ export default [
   return {
     input: `src/${filename}.${ext}`,
     output: [
-      { format: 'amd', file: `dist/${filename}.js`, amd: { id: pkg } }
+      { format: 'cjs', file: `dist/${filename}.js` },
+      { format: 'es', file: `dist/${filename}.es.js` },
     ],
     watch: { exclude: ['node_modules/**'] },
   };
