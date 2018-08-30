@@ -9,8 +9,9 @@
     "build": "rollup -c"
   },
   "devDependencies": {
-    "@battery/cli": "^0.0.3",
-    "@battery/core": "^0.0.2",
     "rollup": "^0.65.0"
+  },
+  "dependencies": {
+    "@battery/core": "^0.0.2"
   }
 }

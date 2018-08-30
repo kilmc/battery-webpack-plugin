@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@battery/cli@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@battery/cli/-/cli-0.0.3.tgz#039911b9499b17b8b62110d74c890100f4e742d9"
-
 "@battery/core@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@battery/core/-/core-0.0.2.tgz#f25bd328ced957ac69cb9ac98db497c99e885534"
