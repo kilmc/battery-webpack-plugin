@@ -15,11 +15,6 @@ class BatteryWebpackPlugin {
   }
 
   apply(compiler) {
-    compiler.resolverFactory.plugin('resolver normal', resolver => {
-      resolver.hooks.resolve.tapAsync(this.pluginName, params => {
-
-      });
-    });
     compiler.hooks.compilation.tap(this.pluginName,(compilation) => {
       compilation.hooks.normalModuleLoader.tap(this.pluginName,(loaderCtx) => {
 
