@@ -1,6 +1,6 @@
 {
-  "name": "battery-example",
-  "version": "1.0.0",
+  "name": "@battery/webpack-plugin",
+  "version": "0.0.1",
   "main": "dist/plugin.js",
   "module": "dist/plugin.es.js",
   "license": "MIT",

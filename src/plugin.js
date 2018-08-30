@@ -42,6 +42,6 @@ class BatteryWebpackPlugin {
   }
 }
 
-BatteryWebpackPlugin.loader = require.resolve('./loader.cjs');
+BatteryWebpackPlugin.loader = require.resolve('./loader.js');
 
 module.exports = BatteryWebpackPlugin;
