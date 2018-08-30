@@ -1,23 +1,27 @@
 const battery = require('@battery/core');
-const config = require('../../config/dist/main')
+const path = require("path");
 
 class BatteryWebpackPlugin {
   constructor(options) {
-    this.cacheObject = {}
-    this.pluginName = 'battery-webpack-plugin',
-    this.distillClassNames = this.distillClassNames.bind(this)
-    this.finalCSS = []
+    this.cacheObject = {};
+    this.pluginName = 'battery-webpack-plugin';
+    this.distillClassNames = this.distillClassNames.bind(this);
+    this.configFilename = "battery.config.js"
+    this.config = require.resolve(
+      path.join(__dirname, this.configFilename)
+    ) || {};
   }
 
   distillClassNames(obj) {
-    return Object.keys(obj).map(x => obj[x]).reduce((xs,x) => xs.concat(x),[])
+    return Object.keys(obj)
+      .map(x => obj[x])
+      .reduce((xs,x) => xs.concat(x),[]);
   }
 
   apply(compiler) {
     compiler.hooks.compilation.tap(this.pluginName,(compilation) => {
       compilation.hooks.normalModuleLoader.tap(this.pluginName,(loaderCtx) => {
 
-        // loaderCtx is 'this' in the loader
         loaderCtx[this.pluginName] = {
           addClassNames: (resourcePath,classNamesArr) => {
             this.cacheObject[resourcePath] = classNamesArr
@@ -26,24 +30,19 @@ class BatteryWebpackPlugin {
       })
     })
 
-    compiler.hooks.done.tap(this.pluginName,() => {
-      this.distilled = this.distillClassNames(this.cacheObject)
-      // this.finalCSS = JSON.stringify(battery.geneateCSS(this.distilled,config));
-      console.log('ARRAY',this.distilled);
-      this.emitWarning(null,battery.generateCSS(this.distilled,config))
-    })
-
     compiler.hooks.emit.tap(this.pluginName, (compilation, callback) => {
-      const fileContent = this.finalCSS;
+      console.log('OHYEAH',this.config)
+      const fileContent = battery.generateCSS(
+        this.distillClassNames(this.cacheObject),
+        this.config
+      );
 
       compilation.assets['battery.css'] = {
         source: () => fileContent,
         size: () => fileContent.length,
       };
 
-      if (callback) {
-        callback();
-      }
+      if (callback) { callback(); }
     })
   }
 }
