@@ -1,15 +1,11 @@
 const battery = require('@battery/core');
-const path = require("path");
 
 class BatteryWebpackPlugin {
   constructor(options) {
     this.cacheObject = {};
     this.pluginName = 'battery-webpack-plugin';
     this.distillClassNames = this.distillClassNames.bind(this);
-    this.configFilename = "battery.config.js"
-    this.config = require.resolve(
-      path.join(__dirname, this.configFilename)
-    ) || {};
+    this.config = options.config;
   }
 
   distillClassNames(obj) {
@@ -19,6 +15,11 @@ class BatteryWebpackPlugin {
   }
 
   apply(compiler) {
+    compiler.resolverFactory.plugin('resolver normal', resolver => {
+      resolver.hooks.resolve.tapAsync(this.pluginName, params => {
+
+      });
+    });
     compiler.hooks.compilation.tap(this.pluginName,(compilation) => {
       compilation.hooks.normalModuleLoader.tap(this.pluginName,(loaderCtx) => {
 
@@ -31,7 +32,6 @@ class BatteryWebpackPlugin {
     })
 
     compiler.hooks.emit.tap(this.pluginName, (compilation, callback) => {
-      console.log('OHYEAH',this.config)
       const fileContent = battery.generateCSS(
         this.distillClassNames(this.cacheObject),
         this.config

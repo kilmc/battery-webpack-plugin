@@ -98,17 +98,6 @@ eval("module.exports =\n/******/ (function(modules) { // webpackBootstrap\n/****
 
 /***/ }),
 
-/***/ "./src sync recursive":
-/*!******************!*\
-  !*** ./src sync ***!
-  \******************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("function webpackEmptyContext(req) {\n\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\te.code = 'MODULE_NOT_FOUND';\n\tthrow e;\n}\nwebpackEmptyContext.keys = function() { return []; };\nwebpackEmptyContext.resolve = webpackEmptyContext;\nmodule.exports = webpackEmptyContext;\nwebpackEmptyContext.id = \"./src sync recursive\";\n\n//# sourceURL=webpack:///./src_sync?");
-
-/***/ }),
-
 /***/ "./src/loader.js":
 /*!***********************!*\
   !*** ./src/loader.js ***!
@@ -129,18 +118,7 @@ eval("\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar battery = __webpack_require__(/*! @battery/core */ \"./node_modules/@battery/core/dist/main.js\");\nvar path = __webpack_require__(/*! path */ \"path\");\n\nvar BatteryWebpackPlugin = function () {\n  function BatteryWebpackPlugin(options) {\n    _classCallCheck(this, BatteryWebpackPlugin);\n\n    this.cacheObject = {};\n    this.pluginName = 'battery-webpack-plugin';\n    this.distillClassNames = this.distillClassNames.bind(this);\n    this.configFilename = \"battery.config.js\";\n    this.config = /*require.resolve*/(__webpack_require__(\"./src sync recursive\").resolve(path.join(__dirname, this.configFilename))) || {};\n  }\n\n  _createClass(BatteryWebpackPlugin, [{\n    key: 'distillClassNames',\n    value: function distillClassNames(obj) {\n      return Object.keys(obj).map(function (x) {\n        return obj[x];\n      }).reduce(function (xs, x) {\n        return xs.concat(x);\n      }, []);\n    }\n  }, {\n    key: 'apply',\n    value: function apply(compiler) {\n      var _this = this;\n\n      compiler.hooks.compilation.tap(this.pluginName, function (compilation) {\n        compilation.hooks.normalModuleLoader.tap(_this.pluginName, function (loaderCtx) {\n\n          loaderCtx[_this.pluginName] = {\n            addClassNames: function addClassNames(resourcePath, classNamesArr) {\n              _this.cacheObject[resourcePath] = classNamesArr;\n            }\n          };\n        });\n      });\n\n      compiler.hooks.emit.tap(this.pluginName, function (compilation, callback) {\n        console.log('OHYEAH', _this.config);\n        var fileContent = battery.generateCSS(_this.distillClassNames(_this.cacheObject), _this.config);\n\n        compilation.assets['battery.css'] = {\n          source: function source() {\n            return fileContent;\n          },\n          size: function size() {\n            return fileContent.length;\n          }\n        };\n\n        if (callback) {\n          callback();\n        }\n      });\n    }\n  }]);\n\n  return BatteryWebpackPlugin;\n}();\n\nBatteryWebpackPlugin.loader = /*require.resolve*/(/*! ./loader */ \"./src/loader.js\");\n\nmodule.exports = BatteryWebpackPlugin;\n\n//# sourceURL=webpack:///./src/plugin.js?");
-
-/***/ }),
-
-/***/ "path":
-/*!***********************!*\
-  !*** external "path" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar battery = __webpack_require__(/*! @battery/core */ \"./node_modules/@battery/core/dist/main.js\");\n\nvar BatteryWebpackPlugin = function () {\n  function BatteryWebpackPlugin(options) {\n    _classCallCheck(this, BatteryWebpackPlugin);\n\n    this.cacheObject = {};\n    this.pluginName = 'battery-webpack-plugin';\n    this.distillClassNames = this.distillClassNames.bind(this);\n    this.config = options.config;\n  }\n\n  _createClass(BatteryWebpackPlugin, [{\n    key: 'distillClassNames',\n    value: function distillClassNames(obj) {\n      return Object.keys(obj).map(function (x) {\n        return obj[x];\n      }).reduce(function (xs, x) {\n        return xs.concat(x);\n      }, []);\n    }\n  }, {\n    key: 'apply',\n    value: function apply(compiler) {\n      var _this = this;\n\n      compiler.resolverFactory.plugin('resolver normal', function (resolver) {\n        resolver.hooks.resolve.tapAsync(_this.pluginName, function (params) {});\n      });\n      compiler.hooks.compilation.tap(this.pluginName, function (compilation) {\n        compilation.hooks.normalModuleLoader.tap(_this.pluginName, function (loaderCtx) {\n\n          loaderCtx[_this.pluginName] = {\n            addClassNames: function addClassNames(resourcePath, classNamesArr) {\n              _this.cacheObject[resourcePath] = classNamesArr;\n            }\n          };\n        });\n      });\n\n      compiler.hooks.emit.tap(this.pluginName, function (compilation, callback) {\n        var fileContent = battery.generateCSS(_this.distillClassNames(_this.cacheObject), _this.config);\n\n        compilation.assets['battery.css'] = {\n          source: function source() {\n            return fileContent;\n          },\n          size: function size() {\n            return fileContent.length;\n          }\n        };\n\n        if (callback) {\n          callback();\n        }\n      });\n    }\n  }]);\n\n  return BatteryWebpackPlugin;\n}();\n\nBatteryWebpackPlugin.loader = /*require.resolve*/(/*! ./loader */ \"./src/loader.js\");\n\nmodule.exports = BatteryWebpackPlugin;\n\n//# sourceURL=webpack:///./src/plugin.js?");
 
 /***/ })
 
