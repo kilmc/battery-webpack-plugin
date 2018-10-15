@@ -2,21 +2,25 @@
 # yarn lockfile v1
 
 
-"@battery/core@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@battery/core/-/core-0.0.2.tgz#f25bd328ced957ac69cb9ac98db497c99e885534"
+"@battery/core@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@battery/core/-/core-0.0.4.tgz#e7b85eb822666bebf3fec676542a6ab0e06c5874"
+  integrity sha512-9AbKbphgWdO8dwjsSCIIyEOuiTDbwiAl1WFtGthl6gkAjodfkDVCc7jbR5We38duNxygE4S5zU7J7Pb93ykpqQ==
 
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
+  integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
 "@types/node@*":
   version "10.9.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.3.tgz#85f288502503ade0b3bfc049fe1777b05d0327d5"
+  integrity sha512-DOzWZKUnmFYG0KUOs+9HEBju2QhBU6oM2zeluunQNt0vnJvnkHvtDNlQPZDkTrkC5pZrNx1TPqeL137zciXZMQ==
 
 rollup@^0.65.0:
   version "0.65.0"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.65.0.tgz#280db1252169b68fc3043028346b337dde453fba"
+  integrity sha512-en95i7zwW5IiWay6DR/6QV8TxO2LvWuCjHYDcgP96oVG/gPnWWzsxNViObhoJUs17bAj2RgB67WuBuGmysZZcw==
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"
