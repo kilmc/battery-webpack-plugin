@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@battery/core@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@battery/core/-/core-0.0.4.tgz#e7b85eb822666bebf3fec676542a6ab0e06c5874"
-  integrity sha512-9AbKbphgWdO8dwjsSCIIyEOuiTDbwiAl1WFtGthl6gkAjodfkDVCc7jbR5We38duNxygE4S5zU7J7Pb93ykpqQ==
+"@battery/core@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@battery/core/-/core-0.0.6.tgz#ca6b0655770d095d52ad53d150f8dd108fcb2130"
+  integrity sha512-at42wHYsRuWrVWwCtZeawmVYg+kfQi+38j13e1K9gBnR3eSNRDkZx5cBsVO6DPbumBZkVkPE0YEcH00qHpe2Fg==
 
 "@types/estree@0.0.39":
   version "0.0.39"
