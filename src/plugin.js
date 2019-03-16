@@ -11,20 +11,19 @@ class BatteryWebpackPlugin {
   distillClassNames(obj) {
     return Object.keys(obj)
       .map(x => obj[x])
-      .reduce((xs,x) => xs.concat(x),[]);
+      .reduce((xs, x) => xs.concat(x), []);
   }
 
   apply(compiler) {
-    compiler.hooks.compilation.tap(this.pluginName,(compilation) => {
-      compilation.hooks.normalModuleLoader.tap(this.pluginName,(loaderCtx) => {
-
+    compiler.hooks.compilation.tap(this.pluginName, compilation => {
+      compilation.hooks.normalModuleLoader.tap(this.pluginName, loaderCtx => {
         loaderCtx[this.pluginName] = {
-          addClassNames: (resourcePath,classNamesArr) => {
-            this.cacheObject[resourcePath] = classNamesArr
+          addClassNames: (resourcePath, classNamesArr) => {
+            this.cacheObject[resourcePath] = classNamesArr;
           }
-        }
-      })
-    })
+        };
+      });
+    });
 
     compiler.hooks.emit.tap(this.pluginName, (compilation, callback) => {
       const fileContent = battery.generateCSS(
@@ -34,11 +33,13 @@ class BatteryWebpackPlugin {
 
       compilation.assets['battery.css'] = {
         source: () => fileContent,
-        size: () => fileContent.length,
+        size: () => fileContent.length
       };
 
-      if (callback) { callback(); }
-    })
+      if (callback) {
+        callback();
+      }
+    });
   }
 }
 
