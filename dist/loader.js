@@ -29,7 +29,10 @@ const extractClassNames = (str, regexArr) => {
   );
   return [...new Set(allClassNames)];
 };
-const jsFilterRegexes = ['styles\\(([^)]+)', 'className=["\'](.*?)["\']'];
+const jsFilterRegexes = [
+  'styles\\(([^)]+)',
+  'className=(?:["\']|{`)(.*?)(?:["\']|`})'
+];
 
 function batteryWebpackLoader(content) {
   if (this.cacheable) {
